@@ -1,4 +1,7 @@
+<%@ page import="Bean.SeleccionesNacionales" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="/includes/navbar.jsp" />
+<jsp:useBean id="lista" type="java.util.ArrayList<Bean.SeleccionesNacionales>" scope="request"/>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,10 +29,15 @@
         </tr>
         <%
             int i = 1;
-            for () {
+            for (SeleccionesNacionales seleccion : lista) {
         %>
         <tr>
-
+            <td><%=1%></td>
+            <td><%=seleccion.getNombre()%></td>
+            <td><%=seleccion.getTecnico()%></td>
+            <td><%=seleccion.getEstadios_idEstadio()%></td>
+            <td><a href="#">Editar</a></td>
+            <td><a href="#">Borrar</a></td>
         </tr>
         <%
                 i++;

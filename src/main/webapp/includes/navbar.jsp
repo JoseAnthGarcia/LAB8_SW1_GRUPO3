@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item" >
-                <a class="nav-link" href="">Selecciones</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/SeleccionesServlet">Selecciones</a>
             </li>
             <li class="nav-item" >
-                <a class="nav-link" href="">Jugadores</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/JugadoresServlet">Jugadores</a>
             </li>
             <li class="nav-item" >
-                <a class="nav-link" href="">Estadios</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/EstadiosServlet">Estadios</a>
             </li>
         </ul>
     </div>
