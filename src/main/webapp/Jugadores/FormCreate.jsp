@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    boolean nombreB = request.getAttribute("nombreB") == null ? true : (Boolean) request.getAttribute("nombreB");
+    boolean edadB = request.getAttribute("edadB") == null ? true : (Boolean) request.getAttribute("edadB");
+    boolean correoExiste = request.getAttribute("correoExiste") == null ? true : (Boolean) request.getAttribute("correoExiste");
+    boolean clubB = request.getAttribute("clubB") == null ? true : (Boolean) request.getAttribute("clubB");
+
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,30 +21,52 @@
             <form method="POST" action="<%=request.getContextPath()%>/JugadoresServlet?action=guardar">
                 <div class="form-group">
                     <label >Nombre</label>
-                    <input type="text" class="form-control" name="nombre">
+
+                    <input type="text" class="form-control <%=nombreB?"":"is-invalid"%>"
+                           aria-describedby="inputLastNameFeedback"
+                           name="nombre"
+                           id="inputNombre" <%=request.getParameter("nombre")==null?"":"value='"+request.getParameter("nombre")+"'"%>>
+                    <div id="inputNombreFeedback" class="invalid-feedback">
+                        Ingrese datos, por favor.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label >Edad</label>
-                    <input type="text" class="form-control" name="edad">
+
+                    <input type="text" class="form-control <%=edadB?"":"is-invalid"%>"
+                           aria-describedby="inputLastNameFeedback"
+                           name="edad"
+                           id="inputEdad" <%=request.getParameter("edad")==null?"":"value='"+request.getParameter("edad")+"'"%>>
+                    <div id="inputEdadFeedback" class="invalid-feedback">
+                        Ingrese datos, por favor.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label >Posición</label>
                     <select name="posicion" class="form-control">
-                        <% for () {%>
-                        <option value="<%=INGRESA TU CÓDIGO AQUÍ%>" <%=INGRESA TU CÓDIGO AQUÍ%> ><%=INGRESA TU CÓDIGO AQUÍ%></option>
-                        <% }%>
+                        <option value="Delantero" selected>Delantero</option>
+                        <option value="Defensa">Defensa</option>
+                        <option value="Portero">Portero</option>
+
                     </select>
                 </div>
                 <div class="form-group">
                     <label >Club</label>
-                    <input type="text" class="form-control" name="club">
+
+                    <input type="text" class="form-control <%=clubB?"":"is-invalid"%>"
+                           aria-describedby="inputLastNameFeedback"
+                           name="club"
+                           id="inputClub" <%=request.getParameter("club")==null?"":"value='"+request.getParameter("club")+"'"%>>
+                    <div id="inputClubFeedback" class="invalid-feedback">
+                        Ingrese datos, por favor.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label >Seleccion Nacional</label>
                     <select name="sn_idSeleccion" class="form-control">
-                        <% for () {%>
-                        <option value="<%=INGRESA TU CÓDIGO AQUÍ%>" <%=INGRESA TU CÓDIGO AQUÍ%> ><%=INGRESA TU CÓDIGO AQUÍ%></option>
-                        <% }%>
+                        <option value="1" selected>Peru</option>
+                        <option value="2">Chile</option>
+                        <option value="3">Argentina</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>

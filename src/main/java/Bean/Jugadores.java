@@ -9,6 +9,7 @@ public class Jugadores {
     private String club;
     private int sn_idSeleccion;
 
+
     public int getIdJugadores() {
         return idJugadores;
     }
