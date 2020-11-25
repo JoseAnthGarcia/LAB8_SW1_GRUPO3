@@ -8,6 +8,7 @@
     <title>JSP Page</title>
 </head>
 <body>
+<jsp:include page="/includes/navbar.jsp"></jsp:include>
 <div class='container'>
     <div class="row mb-5 mt-4">
         <div class="col-lg-6">
@@ -37,9 +38,9 @@
             <td><%=j.getPosicion()%></td>
             <td><%=j.getClub()%></td>
             <td><%=j.getSn_idSeleccion()%></td>
-            <td><a href="<%=request.getContextPath()%>/JobServlet?accion=editar&jobId=<%=j.getIdJugadores() %>"
+            <td><a href="<%=request.getContextPath()%>/JobServlet?accion=editar&jugadorId=<%=j.getIdJugadores() %>"
                    class="btn btn-success">Editar</a></td>
-            <td> <a  href="<%=request.getContextPath()%>/JobServlet?accion=borrar&jobId=<%=j.getIdJugadores() %>" class="btn btn-danger">Borrar</a></td>
+            <td> <a  href="<%=request.getContextPath()%>/JobServlet?accion=borrar&jugadorId=<%=j.getIdJugadores() %>" class="btn btn-danger">Borrar</a></td>
         </tr>
         <% i++;
         } %>

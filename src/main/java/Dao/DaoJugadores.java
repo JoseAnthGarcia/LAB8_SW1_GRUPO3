@@ -7,7 +7,25 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DaoJugadores extends BaseDao {
+    public boolean buscarNombre(String correo){
+        boolean encontrado = false;
 
+        String sql = "SELECT nombre FROM jugadores where nombre=?;";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1,correo);
+            try(ResultSet rs = pstmt.executeQuery()){
+                if(rs.next()){
+                    encontrado = true;
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return encontrado;
+    }
     public ArrayList<Jugadores> listarJugadores(){
 
 
@@ -36,26 +54,56 @@ public class DaoJugadores extends BaseDao {
         return listaJugadores;
     }
 
-    public Jugadores buscarJugadore(int id){
-                /*
-                Inserte su código aquí
-                 */
+    public Jugadores buscarJugadores(int id){
+        String sql = "select j.nombre, j.edad, j.posicion, j.club , s.nombre,sn_idSeleccion\n" +
+                "from jugadores j\n" +
+                "inner join seleccionesnacionales s on j.sn_idSeleccion=s.idSeleccionesNacionales where idJugadores = ?;";
+        Jugadores jugadores = new Jugadores();
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+
+                if (rs.next()) {
+
+                    jugadores.setNombre(rs.getString(1));
+                    jugadores.setEdad(rs.getInt(2));
+                    jugadores.setPosicion(rs.getString(3));
+                    jugadores.setClub(rs.getString(4));
+                    jugadores.setSn_idSeleccion(rs.getInt(6));
+
+
+                }
+            }
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        return jugadores;
 
     }
 
     public void crearJugador(Jugadores jugadores){
-        String sql = "INSERT INTO usuario(nombreUsuario, apellido, dni, correo, contrasenia, idDistrito)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?);";
+
+        String nombre= jugadores.getNombre();
+        int edad= jugadores.getEdad();
+        String posicion= jugadores.getPosicion();
+        String club = jugadores.getClub();
+        int seleccion = jugadores.getSn_idSeleccion();
+        String sql = "INSERT INTO usuario(nombre, edad, posicion, club, sn_idSeleccion)\n" +
+                "VALUES (?, ?, ?, ?, ?);";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
-            pstmt.setString(1,nombres);
-            pstmt.setString(2,apellidos);
-            pstmt.setString(3,dni);
-            pstmt.setString(4, correo);
-            pstmt.setString(5, contrasenia);
-            pstmt.setInt(6, idDistrito);
+            pstmt.setString(1,nombre);
+            pstmt.setInt(2,edad);
+            pstmt.setString(3,posicion);
+            pstmt.setString(4, club);
+            pstmt.setInt(5,seleccion);
+
 
             pstmt.executeUpdate();
         } catch (SQLException throwables) {
