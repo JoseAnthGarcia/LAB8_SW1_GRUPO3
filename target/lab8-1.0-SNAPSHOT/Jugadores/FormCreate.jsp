@@ -1,7 +1,4 @@
-<%@ page import="Bean.Estadios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="listaEstadios" type="java.util.ArrayList<Bean.Estadios>" scope="request"/>
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,26 +10,38 @@
     <div class="row mb-4">
         <div class="col"></div>
         <div class="col-md-6">
-            <h1 class='mb-3'>Crear una Selección Nacional</h1>
-            <form method="POST" action="<%=request.getContextPath()%>/SeleccionesServlet?action=guardar">
+            <h1 class='mb-3'>Crear un Jugador de fútbol</h1>
+            <form method="POST" action="<%=request.getContextPath()%>/JugadoresServlet?action=guardar">
                 <div class="form-group">
                     <label >Nombre</label>
                     <input type="text" class="form-control" name="nombre">
                 </div>
                 <div class="form-group">
-                    <label >Director Técnico</label>
-                    <input type="text" class="form-control" name="tecnico">
+                    <label >Edad</label>
+                    <input type="text" class="form-control" name="edad">
                 </div>
                 <div class="form-group">
-                    <label >Estadio</label>
-                    <select name="estadio" class="form-control">
-                        <% for (Estadios estadio : listaEstadios) {%>
-                        <option value="<%=estadio.getIdEstadios()%>" ><%=estadio.getNombre()%></option>
+                    <label >Posición</label>
+                    <select name="posicion" class="form-control">
+                        <% for () {%>
+                        <option value="<%=INGRESA TU CÓDIGO AQUÍ%>" <%=INGRESA TU CÓDIGO AQUÍ%> ><%=INGRESA TU CÓDIGO AQUÍ%></option>
+                        <% }%>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label >Club</label>
+                    <input type="text" class="form-control" name="club">
+                </div>
+                <div class="form-group">
+                    <label >Seleccion Nacional</label>
+                    <select name="sn_idSeleccion" class="form-control">
+                        <% for () {%>
+                        <option value="<%=INGRESA TU CÓDIGO AQUÍ%>" <%=INGRESA TU CÓDIGO AQUÍ%> ><%=INGRESA TU CÓDIGO AQUÍ%></option>
                         <% }%>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <a href="<%= request.getContextPath()%>/SeleccionesServlet" class="btn btn-danger">Cancelar</a>
+                <a href="<%= request.getContextPath()%>/JugadoresServlet" class="btn btn-danger">Cancelar</a>
             </form>
         </div>
         <div class="col"></div>
