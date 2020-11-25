@@ -9,15 +9,19 @@ import java.util.ArrayList;
 public class DaoJugadores {
 
     public ArrayList<Jugadores> listarJugadores(){
+        ArrayList<Jugadores> listaJugadores = new ArrayList<>();
                 /*
                 Inserte su código aquí
                  */
+        return listaJugadores;
     }
 
     public Jugadores buscarJugadore(int id){
+        Jugadores jugador = null;
                 /*
                 Inserte su código aquí
                  */
+        return jugador;
     }
 
     public void crearJugador(Jugadores jugadores){
