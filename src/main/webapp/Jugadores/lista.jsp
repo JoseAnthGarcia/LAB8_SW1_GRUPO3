@@ -1,5 +1,6 @@
+<%@ page import="Bean.Jugadores" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<jsp:useBean id="lista" scope="request" type="java.util.ArrayList<Bean.Jugadores>" />
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,16 +28,21 @@
             <th></th>
             <th></th>
         </tr>
-        <%
-            int i = 1;
-            for () {
-        %>
+        <% int i=1;
+            for (Jugadores j : lista){%>
         <tr>
+            <td><%=i%> </td>
+            <td><%=j.getNombre()%> </td>
+            <td><%=j.getEdad()%></td>
+            <td><%=j.getPosicion()%></td>
+            <td><%=j.getClub()%></td>
+            <td><%=j.getSn_idSeleccion()%></td>
+            <td><a href="<%=request.getContextPath()%>/JobServlet?accion=editar&jobId=<%=j.getIdJugadores() %>"
+                   class="btn btn-success">Editar</a></td>
+            <td> <a  href="<%=request.getContextPath()%>/JobServlet?accion=borrar&jobId=<%=j.getIdJugadores() %>" class="btn btn-danger">Borrar</a></td>
         </tr>
-        <%
-                i++;
-            }
-        %>
+        <% i++;
+        } %>
     </table>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

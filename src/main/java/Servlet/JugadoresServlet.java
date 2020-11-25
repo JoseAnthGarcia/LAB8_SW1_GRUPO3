@@ -63,10 +63,10 @@ public class JugadoresServlet extends HttpServlet {
                 view.forward(request, response);
                 break;
             case "crear":
-                /*
-                Inserte su código aquí
-                 */
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("FormCreate.jsp");
+                requestDispatcher.forward(request, response);
                 break;
+
             case "editar":
                 /*
                 Inserte su código aquí

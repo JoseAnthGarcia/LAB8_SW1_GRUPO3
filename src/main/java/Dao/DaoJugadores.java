@@ -6,22 +6,15 @@ import Bean.SeleccionesNacionales;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DaoJugadores {
+public class DaoJugadores extends BaseDao {
 
     public ArrayList<Jugadores> listarJugadores(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        String usuario="root";
-        String password="root";
-        String url="jdbc:mysql://localhost:3306/hr?serverTimezone=America/Lima";
+
 
         ArrayList<Jugadores> listaJugadores=  new ArrayList<>();
         String sql= "SELECT * FROM sw1lab8.jugadores;";
 
-        try (Connection connection= DriverManager.getConnection(url,usuario,password);
+        try (Connection connection= getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs= statement.executeQuery(sql)){
             while(rs.next()){
@@ -47,12 +40,27 @@ public class DaoJugadores {
                 /*
                 Inserte su código aquí
                  */
+
     }
 
     public void crearJugador(Jugadores jugadores){
-                /*
-                Inserte su código aquí
-                 */
+        String sql = "INSERT INTO usuario(nombreUsuario, apellido, dni, correo, contrasenia, idDistrito)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?);";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+
+            pstmt.setString(1,nombres);
+            pstmt.setString(2,apellidos);
+            pstmt.setString(3,dni);
+            pstmt.setString(4, correo);
+            pstmt.setString(5, contrasenia);
+            pstmt.setInt(6, idDistrito);
+
+            pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void actualizarJugador(Jugadores jugadores){
