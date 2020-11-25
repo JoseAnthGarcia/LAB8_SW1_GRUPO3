@@ -77,11 +77,7 @@
                 </div>
                 <div class="form-group">
                     <label >Seleccion Nacional</label>
-                    <select name="sn_idSeleccion" class="form-control">
-                        <% for () {%>
-                        <option value="<%=INGRESA TU CÓDIGO AQUÍ%>" <%=INGRESA TU CÓDIGO AQUÍ%> ><%=INGRESA TU CÓDIGO AQUÍ%></option>
-                        <% }%>
-                    </select>
+
                     <select name="sn_idSeleccion" class="form-control">
                         <% if(jugador.getSn_idSeleccion()==1){%>
                         <option value="1" selected>Peru</option>
